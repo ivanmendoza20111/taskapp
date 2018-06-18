@@ -32,16 +32,26 @@ class UsuarioController extends Controller
 
          $em->flush();
         */
-
          /*Traer todos los usuarios*/
          $usuarios=$this->getDoctrine()
              ->getRepository(Usuario::class)
              ->findAll();
 
-         /*
-         dump($usuarios);
-         die;
-        */
+
+         return $this->render('@App/Usuario/index.html.twig',
+             array(
+                 "usuarios" => $usuarios
+             ));
+     }
+
+    /**
+     * @Route("/usuario/lista", name="lista_usuario")
+     */
+     public function listaUsuarioAction(){
+         /*Traer todos los usuarios*/
+         $usuarios=$this->getDoctrine()
+             ->getRepository(Usuario::class)
+             ->findAll();
 
          return $this->render('@App/Usuario/lista.html.twig',
              [

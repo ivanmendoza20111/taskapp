@@ -1,10 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
     <h1> Lista de Usuarios </h1>
-    <ul>
+
+    <table class="table table-condensed table-striped table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>UserName</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for usuario in usuarios %}
-            <li>{{ usuario.username }} - {{ usuario.nombre }}</li>
+            <tr>
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.username }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+    </div>
 {% endblock %}

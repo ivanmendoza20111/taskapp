@@ -1,13 +1,66 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>
         {% block title %}
             App - TaskApp
         {% endblock %}
     </title>
+    {% block style %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/starter-template.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/ie10-viewport-bug-workaround.css') }}" >
+    {% endblock %}
 </head>
 <body>
+
+{% block menu %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">TaskApp</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('visita_usuario') }}">Usuarios</a></li>
+                    <li><a href="{{ path('visita_task') }}">Tareas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
 {% block body %}
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset('js/ie-emulation-modes-warning.js') }}"></script>
+<script src="{{ asset('js/ie8-responsive-file-warning.js') }}"></script>
+<script src="{{ asset('js/html5shiv.min.js') }}"></script>
+<script src="{{ asset('js/respond.min.js') }}"></script>
+
+<script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
+<script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/ie10-viewport-bug-workaround.js') }}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('li.active').removeClass('active');
+        $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+    })
+</script>
 
 {% endblock %}
 </body>
