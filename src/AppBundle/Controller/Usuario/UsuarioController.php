@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UsuarioController extends Controller
 {
     /**
-     * @Route("/usuario", name="visita_usuario")
+     * @Route("/usuario", name="lista_usuario")
      */
      public function indexUsuario(Request $request)
      {

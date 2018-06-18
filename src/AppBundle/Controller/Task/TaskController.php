@@ -15,10 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends Controller
 {
     /**
-     * @Route("/task", name="visita_task")
+     * @Route("/task", name="lista_task")
      */
     public function indexTask(Request $request)
     {
-        return $this->render('@App/Task/index.html.twig');
+        return $this->render('@App/Task/lista.tareas.html.twig');
     }
 }

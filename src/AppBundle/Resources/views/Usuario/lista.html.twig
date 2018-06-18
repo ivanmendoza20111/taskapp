@@ -1,9 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Lista de Usuarios
+{% endblock %}
+
 {% block body %}
     <div class="container">
     <h1> Lista de Usuarios </h1>
-
     <table class="table table-condensed table-striped table-responsive">
         <thead>
             <tr>
@@ -19,6 +22,7 @@
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.username }}</td>
             </tr>
+
         {% endfor %}
         </tbody>
     </table>
