@@ -9,15 +9,13 @@
 namespace AppBundle\Controller\Usuario;
 
 use AppBundle\Entity\Usuario;
+use AppBundle\Service\Helpers;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class UsuarioController extends Controller
 {
@@ -99,13 +97,8 @@ class UsuarioController extends Controller
      */
     public function buscarUsuario($usuario)
     {
-        $encoders=array(new JsonEncoder());
-        $normalizers=array(new ObjectNormalizer());
-        $serializer=new Serializer($normalizers,$encoders);
-
-        $jsonContent=json_decode($serializer->serialize($usuario,'json'),true);
-
-        return new JsonResponse($jsonContent);
+        $helpers = $this->get(Helpers::class);
+        return new JsonResponse($helpers->getJsonArray($usuario));
     }
 
     /**
@@ -125,13 +118,10 @@ class UsuarioController extends Controller
         $em->persist($usuario);
         $em->flush();
 
-        $encoders=array(new JsonEncoder());
-        $normalizers=array(new ObjectNormalizer());
-        $serializer=new Serializer($normalizers,$encoders);
+        /* Tarea convertr esto en servicio */
+        $helpers = $this->get(Helpers::class);
+        return new JsonResponse($helpers-getJsonArray($usuario));
 
-        $jsonContent=json_decode($serializer->serialize($usuario,'json'),true);
-
-        return new JsonResponse($jsonContent);
         // sFormType
         // return null;
         // Investigar jms_serializer
@@ -146,25 +136,20 @@ class UsuarioController extends Controller
      * @ParamConverter("usuario", class="AppBundle:Usuario")
      * @param Request $request
      * @param Usuario $usuario
-     *
+     * @return JsonResponse
      */
     public function actualizarUsuario(Request $request,$usuario)
     {
         $data=$request->getContent();
         $data=(json_decode($data,true));
 
-        $usuario->setNombre($data["nombre"]);
-        $usuario->setUsername($data["Username"]);
-
-        $encoders=array(new JsonEncoder());
-        $normalizers=array(new ObjectNormalizer());
-        $serializer=new Serializer($normalizers,$encoders);
+        //$usuario->setNombre($data["nombre"]);
+        //$usuario->setUsername($data["username"]);
 
         $em=$this->getDoctrine()->getManager();
         $em->flush();
 
-        $jsonContent=json_decode($serializer->serialize($usuario,'json'),true);
-
-        return new JsonResponse($jsonContent);;
+        $helpers = $this->get(Helpers::class);
+        return new JsonResponse($helpers->getJsonArray($usuario));
     }
 }
