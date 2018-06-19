@@ -51,20 +51,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TaskController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TaskController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+            <state>
+              <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+              <folding>
+                <element signature="e#129#188#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsuarioController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UsuarioController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Usuario/UsuarioController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="18" column="45" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="45" />
+            <state relative-caret-position="462">
+              <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
               <folding>
                 <element signature="e#131#160#0#PHP" expanded="true" />
               </folding>
@@ -99,12 +102,12 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/index.html.twig.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Usuario/UsuarioController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Usuario/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Usuario/lista.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Usuario/UsuarioController.php" />
       </list>
     </option>
   </component>
@@ -328,12 +331,12 @@
       <workItem from="1528162943665" duration="42000" />
       <workItem from="1528741718997" duration="10428000" />
       <workItem from="1528758157074" duration="1298000" />
-      <workItem from="1529345989626" duration="4104000" />
+      <workItem from="1529345989626" duration="9847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16447000" />
+    <option name="totallyTimeSpent" value="22190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -496,16 +499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Usuario/UsuarioController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="45" />
-          <folding>
-            <element signature="e#131#160#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Task/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -530,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Usuario/lista.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -551,10 +537,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="62" column="8" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+        <state>
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
+          <folding>
+            <element signature="e#129#188#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Usuario/UsuarioController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+          <folding>
+            <element signature="e#131#160#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
