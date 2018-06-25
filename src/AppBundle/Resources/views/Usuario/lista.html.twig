@@ -7,12 +7,18 @@
 {% block body %}
     <div class="container">
     <h1> Lista de Usuarios </h1>
-    <table class="table table-condensed table-striped table-responsive">
+        <div class="pull-right">
+            <button class="btn btn-default" id="btnNuevo" aria-hidden="true"><span class="glyphicon glyphicon-plus"></span> <b>Nuevo Usuario</b></button>
+        </div>
+<div class="container-fluid"></div>
+<br>
+    <table class="table table-condensed table-hover table-bordered table-responsive">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>UserName</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,8 +27,11 @@
                 <td>{{ usuario.id }}</td>
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.username }}</td>
+                <td>
+                    <button id="editUsuario" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <b>Editar</b></button>&nbsp;
+                    <button id="removeUsuario" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <b>Eliminar</b></button>
+                </td>
             </tr>
-
         {% endfor %}
         </tbody>
     </table>

@@ -12,7 +12,6 @@ use AppBundle\Entity\Usuario;
 use AppBundle\Service\Helpers;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,23 +23,10 @@ class UsuarioController extends Controller
      */
      public function indexUsuario(Request $request)
      {
-         /*
-          * Insertar Usuario
-         $em = $this->getDoctrine()->getManager();
-
-         $usuario = new Usuario();
-         $usuario->setNombre("Hector Ventura");
-         $usuario->setUsername("hectorventura@gmail.com");
-
-         $em->persist($usuario);
-
-         $em->flush();
-        */
          /*Traer todos los usuarios*/
          $usuarios=$this->getDoctrine()
              ->getRepository(Usuario::class)
              ->findAll();
-
 
          return $this->render('@App/Usuario/index.html.twig',
              array(
@@ -92,10 +78,9 @@ class UsuarioController extends Controller
     /**
      * @Route("/rest/usuario/{id}", name="buscar_usuario")
      * @Method("GET")
-     * @ParamConverter("usuario", class="AppBundle:Usuario")
      * @param Usuario $usuario
      */
-    public function buscarUsuario($usuario)
+    public function buscarUsuario(Usuario $usuario)
     {
         $helpers = $this->get(Helpers::class);
         return new JsonResponse($helpers->getJsonArray($usuario));
@@ -120,7 +105,7 @@ class UsuarioController extends Controller
 
         /* Tarea convertr esto en servicio */
         $helpers = $this->get(Helpers::class);
-        return new JsonResponse($helpers-getJsonArray($usuario));
+        return new JsonResponse($helpers->getJsonArray($usuario));
 
         // sFormType
         // return null;
@@ -133,23 +118,28 @@ class UsuarioController extends Controller
     /**
      * @Route("/rest/usuario/{id}", name="actualizar_usuario")
      * @Method("PUT")
-     * @ParamConverter("usuario", class="AppBundle:Usuario")
      * @param Request $request
      * @param Usuario $usuario
      * @return JsonResponse
      */
-    public function actualizarUsuario(Request $request,$usuario)
+    public function actualizarUsuario(Request $request,Usuario $usuario)
     {
         $data=$request->getContent();
         $data=(json_decode($data,true));
 
-        //$usuario->setNombre($data["nombre"]);
-        //$usuario->setUsername($data["username"]);
+        $usuario->setNombre($data["nombre"]);
+        $usuario->setUsername($data["username"]);
 
         $em=$this->getDoctrine()->getManager();
         $em->flush();
 
+        $jsonContent = $this->get('serializer')->serialize($usuario, 'json');
+        $jsonContent = json_decode($jsonContent,true);
+
+        return new JsonResponse($jsonContent);
+        /*
         $helpers = $this->get(Helpers::class);
         return new JsonResponse($helpers->getJsonArray($usuario));
+        */
     }
 }
