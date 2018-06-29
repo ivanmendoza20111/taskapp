@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class UsuarioController extends Controller
 {
@@ -33,6 +34,37 @@ class UsuarioController extends Controller
                  "usuarios" => $usuarios
              ));
      }
+
+
+    /**
+     * @Route("/usuario/{id}", name="editar_usuario", requirements={"id"="\d+"})
+     * @Method("GET")
+     * @param Usuario $usuario
+     * @return Response
+     */
+    public function indexEditUsuario(Usuario $usuario)
+    {
+        return $this->render('@App/Usuario/editar_usuario.html.twig',
+            array(
+                "usuario" => $usuario
+            ));
+    }
+
+    /**
+     * @Route("/usuario/eliminar/{id}", name="eliminar_usuario", requirements={"id"="\d+"})
+     * @Method("GET")
+     * @param Usuario $usuario
+     * @return Response
+     */
+    public function indexEliminarUsuario(Usuario $usuario)
+    {
+        /* Eliminar */
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($usuario);
+        $em->flush();
+
+        return $this->redirectToRoute('lista_usuario');
+    }
 
     /**
      * @Route("/usuario/lista", name="lista_usuario")
@@ -142,4 +174,20 @@ class UsuarioController extends Controller
         return new JsonResponse($helpers->getJsonArray($usuario));
         */
     }
+
+    /**
+     * @Route("/rest/usuario/{id}", name="eliminar_usuario2")
+     * @Method("DELETE")
+     * @param Usuario $usuario
+     * @return Response
+     */
+    public function eliminarUsuario(Usuario $usuario)
+    {
+        /* Eliminar */
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($usuario);
+        $em->flush();
+        return new Response("1");
+    }
+
 }

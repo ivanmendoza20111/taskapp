@@ -28,12 +28,29 @@
                 <td>{{ usuario.nombre }}</td>
                 <td>{{ usuario.username }}</td>
                 <td>
-                    <button id="editUsuario" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <b>Editar</b></button>&nbsp;
-                    <button id="removeUsuario" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <b>Eliminar</b></button>
+                    <a href="{{ path('editar_usuario', {'id': usuario.id } ) }}" id="editUsuario" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <b>Editar</b></a>&nbsp;
+                    <a id="removeUsuario" class="btn btn-danger btn-xs" onclick="eliminar( {{ usuario.id }} )"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <b>Eliminar</b></a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     </div>
+
+    <script>
+        function eliminar(id){
+            $.ajax({
+                url: '/app_dev.php/rest/usuario/' + id,
+                type: 'DELETE',
+                success: function (response) {
+                    console.log(response);
+                    $(this).remove();
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        }
+    </script>
+
 {% endblock %}
