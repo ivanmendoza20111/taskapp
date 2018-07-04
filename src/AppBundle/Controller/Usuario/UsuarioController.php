@@ -9,6 +9,7 @@
 namespace AppBundle\Controller\Usuario;
 
 use AppBundle\Entity\Usuario;
+use AppBundle\Form\UsuarioType;
 use AppBundle\Service\Helpers;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -99,7 +100,7 @@ class UsuarioController extends Controller
     //Restful API
 
     /**
-    * @Route("/rest/usuario/", name="buscar_usuarios")
+    * @Route("/rest/usuario/",options={"expose"=true}, name="buscar_usuarios")
     * @Method("GET")
     */
     public function buscarUsuarios(Request $request)
@@ -108,7 +109,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/rest/usuario/{id}", name="buscar_usuario")
+     * @Route("/rest/usuario/{id}",options={"expose"=true}, name="buscar_usuario")
      * @Method("GET")
      * @param Usuario $usuario
      */
@@ -119,36 +120,39 @@ class UsuarioController extends Controller
     }
 
     /**
-    * @Route("/rest/usuario", name="guardar_usuario")
+    * @Route("/rest/usuario", options={"expose"=true}, name="guardar_usuario")
     * @Method("POST")
     */
     public function guardarUsuario(Request $request)
     {
-        $data=$request->getContent();
-        $data=(json_decode($data,true));
+        $data = $request->getContent();
+        $data = (json_decode($data, true));
 
-        $usuario=new Usuario();
-        $usuario->setNombre($data["nombre"]);
-        $usuario->setUsername($data["Username"]);
+        $usuario = new Usuario();
 
-        $em=$this->getDoctrine()->getManager();
-        $em->persist($usuario);
-        $em->flush();
+        //Para Insertar por Form
+        $form = $this->createForm(UsuarioType::class, $usuario);
+        $form->submit($data);
 
-        /* Tarea convertr esto en servicio */
-        $helpers = $this->get(Helpers::class);
-        return new JsonResponse($helpers->getJsonArray($usuario));
+        //Para acceder a los valores
+        //$usuario->setNombre($data["nombre"]);
+        //$usuario->setUsername($data["Username"]);
 
-        // sFormType
-        // return null;
-        // Investigar jms_serializer
-        // Servicios en Symfony
-        // Tipos de formulario formTypes
-        //
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+            $helpers = $this->get(Helpers::class);
+            return new JsonResponse($helpers->getJsonArray($usuario));
+        }
+
+        //$errors=$form->getErrors();
+
+        return new JsonResponse(null,400);
     }
 
     /**
-     * @Route("/rest/usuario/{id}", name="actualizar_usuario")
+     * @Route("/rest/usuario/{id}",options={"expose"=true}, name="actualizar_usuario")
      * @Method("PUT")
      * @param Request $request
      * @param Usuario $usuario
@@ -159,8 +163,12 @@ class UsuarioController extends Controller
         $data=$request->getContent();
         $data=(json_decode($data,true));
 
-        $usuario->setNombre($data["nombre"]);
-        $usuario->setUsername($data["username"]);
+        //Para Insertar por Form
+        $form=$this->createForm(UsuarioType::class, $usuario);
+        $form->submit($data);
+
+        //$usuario->setNombre($data["nombre"]);
+        //$usuario->setUsername($data["username"]);
 
         $em=$this->getDoctrine()->getManager();
         $em->flush();
@@ -176,7 +184,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/rest/usuario/{id}", name="eliminar_usuario2")
+     * @Route("/rest/usuario/{id}",options={"expose"=true}, name="eliminar_usuario2")
      * @Method("DELETE")
      * @param Usuario $usuario
      * @return Response

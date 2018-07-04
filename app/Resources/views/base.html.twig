@@ -50,6 +50,7 @@
 {% endblock %}
 
 {% block javascript %}
+
 <script src="{{ asset('assets/js/ie-emulation-modes-warning.js') }}"></script>
 <script src="{{ asset('assets/js/ie8-responsive-file-warning.js') }}"></script>
 <script src="{{ asset('assets/js/html5shiv.min.js') }}"></script>
@@ -59,6 +60,9 @@
 <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.min.js') }}"><\/script>')</script>
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 <script src="{{ asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
 <script>
     $(document).ready(function() {

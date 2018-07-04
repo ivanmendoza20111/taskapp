@@ -35,6 +35,20 @@ class Usuario
      */
     private $username;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tipo_usuario", type="string", length=255, unique=false)
+     */
+    private $tipoUsuario;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contrasena", type="string", length=255, unique=false)
+     */
+    private $contrasena;
+
 
     /**
      * Get id
@@ -93,5 +107,40 @@ class Usuario
     {
         return $this->username;
     }
+
+    /**
+     * @return string
+     */
+    public function getTipoUsuario()
+    {
+        return $this->tipoUsuario;
+    }
+
+    /**
+     * @param string $tipoUsuario
+     */
+    public function setTipoUsuario($tipoUsuario)
+    {
+        $this->tipoUsuario = $tipoUsuario;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContrasena()
+    {
+        return $this->contrasena;
+    }
+
+    /**
+     * @param string $contrasena
+     */
+    public function setContrasena($contrasena)
+    {
+        $this->contrasena = $contrasena;
+    }
+
+
+
 }
 

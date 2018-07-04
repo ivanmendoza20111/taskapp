@@ -29,28 +29,43 @@
                 <td>{{ usuario.username }}</td>
                 <td>
                     <a href="{{ path('editar_usuario', {'id': usuario.id } ) }}" id="editUsuario" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <b>Editar</b></a>&nbsp;
-                    <a id="removeUsuario" class="btn btn-danger btn-xs" onclick="eliminar( {{ usuario.id }} )"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <b>Eliminar</b></a>
+                    <a id="removeUsuario" class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> <b>Eliminar</b>
+                    </a>
                 </td>
+                <td hidden id="idUsuario">{{ usuario.id }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
     </div>
 
-    <script>
-        function eliminar(id){
-            $.ajax({
-                url: '/app_dev.php/rest/usuario/' + id,
-                type: 'DELETE',
-                success: function (response) {
-                    console.log(response);
-                    $(this).remove();
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-        }
-    </script>
 
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+
+<script>
+
+$(document).ready(function(e){
+    $(document).on('click','#removeUsuario',function(e){
+    var r=$(e.target).closest('tr');
+    var id=r.find('#idUsuario').text();
+
+    $.ajax({
+        url:  Routing.generate('actualizar_usuario', {id:id}),
+        type: 'DELETE',
+        success: function (response) {
+            console.log(response);
+            r.remove();
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+});
+
+});
+</script>
 {% endblock %}

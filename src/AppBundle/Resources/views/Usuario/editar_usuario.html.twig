@@ -36,7 +36,7 @@
              };
 
              $.ajax({
-                url: '/app_dev.php/rest/usuario/'+id,
+                 url: Routing.generate('eliminar_usuario2', {id:id}),
                  data: JSON.stringify(data),
                  type: 'PUT',
                  success:function (response) {
@@ -47,6 +47,8 @@
                  }
              });
          }
+
+
     </script>
 
 {% endblock %}
