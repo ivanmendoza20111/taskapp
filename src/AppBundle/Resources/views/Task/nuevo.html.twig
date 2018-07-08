@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Nueva Tarea
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Nueva Tarea</h2>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="pull-right">
+                    <a href="{{ path('lista_task') }}" class="btn btn-danger" id="btnCancelarTicket"><span class="glyphicon glyphicon-remove"></span> <b>Cancelar</b></a>
+                    <button type="button" class="btn btn-success" id="btnGuardarTicket"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Guardar</b></button>
+                </div>
+                <div class="container-fluid"></div>
+                {{ form_start(form) }}
+                <div class="form-group">
+                    <label>Asignar A:</label>
+                    <select class="form-control" name="usuarios" id="usuarioAsignado" required="true">
+                        <option value="0">Seleccione un Usuario Técnico</option>
+                        {% for usuario in usuarios %}
+                            <option value="{{ usuario.id }}">{{ usuario.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {{ form_widget(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+
+<script>
+
+$(document).ready(function(e){
+
+   $('#btnGuardarTicket').click(function(e){
+        if($('#usuarioAsignado').val()==0){
+            alert('Debe seleccionar un Usuario para continuar.');
+            return;
+        }else{
+            var usuario_asignado_id=$('#usuarioAsignado').val();
+            var descripcion=$('#appbundle_ticket_descripcion').val();
+
+            $.ajax({
+                url:  Routing.generate('guardar_task'),
+                type:'POST',
+                data: JSON.stringify({usuario_asignado_id:usuario_asignado_id,descripcion:descripcion}),
+                success: function(response){
+                    window.location.href = Routing.generate('lista_task');
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        }
+   });
+});
+
+</script>
+
+{% endblock %}

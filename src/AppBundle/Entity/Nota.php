@@ -39,6 +39,8 @@ class Nota
      * @var int
      *
      * @ORM\Column(name="usuario_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ticket", inversedBy="Nota")
+     * @ORM\JoinColumn(name="ticketId", referencedColumnName="id")
      */
     private $usuarioId;
 

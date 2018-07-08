@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Registro
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block style %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/signin.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {{ form_start(form,{ 'attr':{'class':'form-signin'}}) }}
+        <div class="panel panel-default">
+            <div class="panel-heading"><label>Registro de Usuario</label></div>
+            <div class="panel-body">
+        {{ form_widget(form) }}
+                <a href="{{ path('homepage') }}">LogIn</a>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Guardar</b></button>
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+
+    </div>
+{% endblock %}

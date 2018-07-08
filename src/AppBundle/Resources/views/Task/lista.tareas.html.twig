@@ -6,8 +6,47 @@
 
 {% block body %}
 <div class="container">
-    <div class="starter-template">
-        <h1>Lista de Tareas</h1>
-    </div>
+
+
+    {% if app.user.tipoUsuario == 'NORMAL' %}
+        <h3><b>Mis Tickets</b></h3>
+        <div class="pull-right">
+            <a href="{{ path('nuevo_task') }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> <b>Nuevo Ticket</b></a>
+        </div>
+    {% else %}
+        <h3><b>Mis Asignaciones</b></h3>
+    {% endif %}
+    <div class="container-fluid"></div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Fecha</th>
+                <th>Asignado A</th>
+                <th>Estado</th>
+                <th valign="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {# {{ dump(tasks) }} #}
+        {% if tasks|length > 0 %}
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.fechaCreado|date('m/d/Y H:m:s ') }}</td>
+                    <td></td>
+                    <td>{{ task.estado }}</td>
+                    <td align="center"><a class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-eye-open"></span> <b>Ver</b></a></td>
+                </tr>
+            {% endfor %}
+
+        {% else %}
+            <tr>
+                <td colspan="5"><b>No Hay Tareas Creadas!</b></td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
 </div>
 {% endblock %}

@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UsuarioController extends Controller
 {
@@ -83,17 +84,35 @@ class UsuarioController extends Controller
          );
      }
 
+
     /**
-     * @Route("/usuario/{idUsuario}", name="informacion_usuario")
+     * @Route("/registro_usuario", name="registro")
      */
-    public function indexUsuarioInfo($idUsuario)
+    public function registroAction(Request $request,  UserPasswordEncoderInterface $passwordEncoder)
     {
-        /*Deben tener el mismo nombre para el get, el parametro y la ruta*/
-        /*dump solo se usa en desarrollo*/
-        //dump("Estamos viendo el usuario: ".$idUsuario);
-        return $this->render('@App/Usuario/index.html.twig', [
-            'idUsuario'=>$idUsuario
-        ]);
+        $usuario=new Usuario();
+        $form=$this->createForm(UsuarioType::class,$usuario);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $password = $passwordEncoder->encodePassword($usuario, $usuario->getContrasena());
+            $usuario->setContrasena($password);
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($usuario);
+            $em->flush();
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('@App\Usuario\registro.html.twig',array(
+            'form'=>$form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction(Request $request){
 
     }
 
@@ -150,6 +169,8 @@ class UsuarioController extends Controller
 
         return new JsonResponse(null,400);
     }
+
+
 
     /**
      * @Route("/rest/usuario/{id}",options={"expose"=true}, name="actualizar_usuario")

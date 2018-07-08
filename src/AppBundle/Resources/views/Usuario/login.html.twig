@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    SigIn
+{% endblock %}
+
+{% block style %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/signin.css') }}">
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <form class="form-signin" action="{{ path('homepage') }}" method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading"><label>Iniciar Sesión - TaskApp</label></div>
+                <div class="panel-body">
+
+                        <label>Usuario:</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}"  class="form-control" placeholder="Usuario" required autofocus>
+
+                        <label>Contraseña:</label>
+                        <input type="password" id="password" name="_password"  class="form-control" placeholder="Contraseña" required>
+
+                    {% if error %}
+                        <div style="color: red;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <a href="{{ path('registro') }}">Registrarse!</a>
+                    <div class="pull-right">
+                        <button class="btn btn-success " type="submit"><span class="glyphicon glyphicon-log-in"></span> <b>Iniciar</b></button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="_target_path" value="/task" />
+        </form>
+
+    </div>
+{% endblock %}

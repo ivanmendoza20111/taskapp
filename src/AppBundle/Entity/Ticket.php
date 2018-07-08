@@ -43,16 +43,14 @@ class Ticket
     private $fechaCreado;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="usuario_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ticket")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
      */
     private $usuarioId;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="usuario_asignado_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ticket")
+     * @ORM\JoinColumn(name="usuarioAsignadoId", referencedColumnName="id")
      */
     private $usuarioAsignadoId;
 
@@ -62,7 +60,6 @@ class Ticket
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
-
 
     /**
      * Get id
