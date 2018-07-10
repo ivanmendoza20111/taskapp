@@ -6,8 +6,6 @@
 
 {% block body %}
 <div class="container">
-
-
     {% if app.user.tipoUsuario == 'NORMAL' %}
         <h3><b>Mis Tickets</b></h3>
         <div class="pull-right">
@@ -28,15 +26,15 @@
             </tr>
         </thead>
         <tbody>
-        {# {{ dump(tasks) }} #}
+        {{ dump(tasks) }}
         {% if tasks|length > 0 %}
             {% for task in tasks %}
                 <tr>
                     <td>{{ task.id }}</td>
-                    <td>{{ task.fechaCreado|date('m/d/Y H:m:s ') }}</td>
+                    <td>{{ task.fechaCompletado|date('m/d/Y H:m:s ') }}</td>
                     <td></td>
                     <td>{{ task.estado }}</td>
-                    <td align="center"><a class="btn btn-success btn-xs" href="#"><span class="glyphicon glyphicon-eye-open"></span> <b>Ver</b></a></td>
+                    <td align="center"><a class="btn btn-success btn-xs" href="{{ path('ver_task',{id: task.id }) }}"><span class="glyphicon glyphicon-eye-open"></span> <b>Ver</b></a></td>
                 </tr>
             {% endfor %}
 

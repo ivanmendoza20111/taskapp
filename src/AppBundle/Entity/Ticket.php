@@ -38,21 +38,21 @@ class Ticket
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_creado", type="datetime")
+     * @ORM\Column(name="fecha_completado", type="datetime", nullable=true)
      */
-    private $fechaCreado;
+    private $fechaCompletado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ticket")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="tickets")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $usuarioId;
+    private $usuario;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ticket")
-     * @ORM\JoinColumn(name="usuarioAsignadoId", referencedColumnName="id")
+     * insversedBy variable nombrada en Entidad Usuario
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ticketsAsignado")
      */
-    private $usuarioAsignadoId;
+    private $usuarioAsignado;
 
     /**
      * @var string
@@ -120,39 +120,39 @@ class Ticket
     }
 
     /**
-     * Set fechaCreado
+     * Set fechaCompletado
      *
-     * @param \DateTime $fechaCreado
+     * @param \DateTime $fechaCompletado
      *
      * @return Ticket
      */
-    public function setFechaCreado($fechaCreado)
+    public function setFechaCompletado($fechaCompletado)
     {
-        $this->fechaCreado = $fechaCreado;
+        $this->fechaCompletado = $fechaCompletado;
 
         return $this;
     }
 
     /**
-     * Get fechaCreado
+     * Get fechaCompletado
      *
      * @return \DateTime
      */
-    public function getFechaCreado()
+    public function getFechaCompletado()
     {
-        return $this->fechaCreado;
+        return $this->fechaCompletado;
     }
 
     /**
      * Set usuarioId
      *
-     * @param integer $usuarioId
+     * @param integer $usuario
      *
      * @return Ticket
      */
-    public function setUsuarioId($usuarioId)
+    public function setUsuario($usuario)
     {
-        $this->usuarioId = $usuarioId;
+        $this->usuario = $usuario;
 
         return $this;
     }
@@ -162,34 +162,27 @@ class Ticket
      *
      * @return int
      */
-    public function getUsuarioId()
+    public function getUsuario()
     {
-        return $this->usuarioId;
+        return $this->usuario;
     }
 
     /**
-     * Set usuarioAsignadoId
-     *
-     * @param integer $usuarioAsignadoId
-     *
-     * @return Ticket
+     * @return mixed
      */
-    public function setUsuarioAsignadoId($usuarioAsignadoId)
+    public function getUsuarioAsignado()
     {
-        $this->usuarioAsignadoId = $usuarioAsignadoId;
-
-        return $this;
+        return $this->usuarioAsignado;
     }
 
     /**
-     * Get usuarioAsignadoId
-     *
-     * @return int
+     * @param mixed $usuarioAsignado
      */
-    public function getUsuarioAsignadoId()
+    public function setUsuarioAsignado($usuarioAsignado)
     {
-        return $this->usuarioAsignadoId;
+        $this->usuarioAsignado = $usuarioAsignado;
     }
+
 
     /**
      * Set estado

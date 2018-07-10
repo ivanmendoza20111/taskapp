@@ -52,14 +52,39 @@ class Usuario implements UserInterface
      */
     private $contrasena;
 
+
     /**
+     * $tickets
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="usuario")
      */
-    private $usuario_id;
+    private $tickets;
+
+    /**
+     * $ticketsAsignado
+     * @ORM\OneToMany(targetEntity="Ticket", mappedBy="usuarioAsignado")
+     */
+    private $ticketsAsignado;
 
     public function __construct()
     {
-        $this->usuario_id = new ArrayCollection();
+        $this->tickets = new ArrayCollection();
+        $this->ticketsAsignado = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
+    /**
+     * @param mixed $tickets
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
     }
 
     /**
@@ -71,6 +96,7 @@ class Usuario implements UserInterface
     {
         return $this->id;
     }
+
 
     /**
      * Set nombre

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Tareas
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2><b>Asignación # {{ ticket.id }}</b></h2>
+                <label class="label label-primary">{{ ticket.estado }}</label>
+            </div>
+            <div class="col-md-2">
+                <div class="pull-right">
+                    <h2><b>{{ ticket.fecha|date('d/m/Y') }}</b></h2>
+                </div>
+            </div>
+        </div>
+
+    <br>
+        <div class="row">
+            <div class="col-md-7">
+                <h4>Solicitdo por: <b>Juan</b></h4>
+                <p>Descripción: {{ ticket.descripcion }}</p>
+            </div>
+            <div class="col-md-5">
+                <h2><b>Notas</b> <button type="button" class="btn btn-success" id="btnNota" data-toggle="modal" data-target="#modalNotas"><span class="glyphicon glyphicon-plus"></span> <b>Nueva Nota</b></button></h2>
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if notas|length > 0 %}
+                            {#
+                            <tr>
+                                <td>{{ notas.usuario }}</td>
+                                <td>{{ notas.fecha }}</td>
+                                <td>{{ notas.comentario }}</td>
+                            </tr>
+                            #}
+                        {% else %}
+                            <tr><td colspan="3"><b>No Hay Registros!</b></td></tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modalNotas" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b>Notas</b></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nota:</label>
+                        <textarea class="form-control" id="txtNota" rows="5" autofocus></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-log-out"></span> <b>Volver</b></button>
+                    <button type="button" class="btn btn-success" id="btnGuardar"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Guardar</b></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

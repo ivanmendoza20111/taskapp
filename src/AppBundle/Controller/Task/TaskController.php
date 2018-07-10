@@ -17,6 +17,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Service\Helpers;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class TaskController extends Controller
 {
@@ -26,14 +32,26 @@ class TaskController extends Controller
     public function indexTask(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
-        $query=$em->createQuery(
-            'SELECT t FROM AppBundle:Ticket t 
-             JOIN t.usuarioAsignadoId u
-             WHERE t.usuarioId=:usuarioId
-             ORDER BY t.fechaCreado DESC'
-        )->setParameter('usuarioId',$this->getUser()->getId());
+//         $query=$em->createQuery(
+//                'SELECT t FROM AppBundle:Ticket t
+//                WHERE t.usuario=:usuario_id
+//                 ORDER BY t.fecha DESC'
+//            )->setParameter('usuario_id',$this->getUser()->getId());
+//
+//         $task=$query->getResult();
+//
+        $repository=$this->getDoctrine()->getRepository(Ticket::class);
+        $query=$repository->createQueryBuilder()
+            ->
+        $query=$em->createQueryBuilder()
+            ->select('t')
+            ->from('AppBundle:Ticket', 't')
+            ->join('t.usuarioAsignado', 'u')
+            ->where('t.usuario = :usuarioId')
+            ->setParameter('usuarioId', $this->getUser());
+          //  ->orderBy('t.fechaCreado', 'DESC');
 
-        $task=$query->getResult();
+        $task = $query->getQuery()->getResult();
 
         return $this->render('@App/Task/lista.tareas.html.twig', array(
             'tasks'=>$task
@@ -62,6 +80,19 @@ class TaskController extends Controller
         ));
     }
 
+    /**
+     * @Route("/task/ver/{id}", name="ver_task", options={"expose"=true},requirements={"id"="\d+"} )
+     * @Method("GET")
+     * @param Ticket $ticket
+     * @return Response
+     */
+    public function verTask(Ticket $ticket){
+        return $this->render('@App/Task/ver.html.twig',array(
+            'ticket'=>$ticket,
+            'notas'=>0
+        ));
+    }
+
     //Restful API
     /**
      * @Route("/rest/task", options={"expose"=true}, name="guardar_task")
@@ -77,15 +108,10 @@ class TaskController extends Controller
         $ticket->setDescripcion($data['descripcion']);
         $ticket->setEstado('Pendiente');
         $ticket->setFecha(new \DateTime());
-        $ticket->setFechaCreado(new \DateTime());
+        $ticket->setFechaCompletado(null);
 
         $usarioId=new Usuario();
         $usuarioAsignadoId=new Usuario();
-
-        /*
-        $ticket->setUsuarioId($this->getUser()->getId());
-        $ticket->setUsuarioAsignadoId($data['usuario_asignado_id']);
-        */
 
         $em = $this->getDoctrine()->getManager();
 
@@ -93,14 +119,28 @@ class TaskController extends Controller
         $usarioId=$em->getRepository(Usuario::class)->find($this->getUser()->getId());
         $usuarioAsignadoId=$em->getRepository(Usuario::class)->find($data['usuario_asignado_id']);
 
-        $ticket->setUsuarioId($usarioId);
-        $ticket->setUsuarioAsignadoId($usuarioAsignadoId);
+
+        $ticket->setUsuario($usarioId);
+        $ticket->setUsuarioAsignado($usuarioAsignadoId);
 
         $em->persist($ticket);
         $em->flush();
 
-        $helpers = $this->get(Helpers::class);
-        return new JsonResponse($helpers->getJsonArray($ticket));
-        //return new JsonResponse(null,400);
+        //$helpers = $this->get(Helpers::class);
+
+        //Normalize
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(1);
+        // Add Circular reference handler
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+
+        $normalizers = array($normalizer);
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $json =  $serializer->serialize($ticket,'json');
+        return new JsonResponse($json);
     }
 }
