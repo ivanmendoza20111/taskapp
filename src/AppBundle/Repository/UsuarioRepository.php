@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class UsuarioRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function allUserTecnico(){
+        return $this->getEntityManager()->createQuery(
+            ' SELECT u FROM AppBundle:Usuario u
+            WHERE u.tipoUsuario=:tipoUsuario
+            ORDER BY u.id asc'
+        )->setParameter('tipoUsuario', 'TECNICO')->getResult();
+    }
+
 }

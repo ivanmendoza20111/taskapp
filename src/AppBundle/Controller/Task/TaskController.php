@@ -32,26 +32,8 @@ class TaskController extends Controller
     public function indexTask(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
-//         $query=$em->createQuery(
-//                'SELECT t FROM AppBundle:Ticket t
-//                WHERE t.usuario=:usuario_id
-//                 ORDER BY t.fecha DESC'
-//            )->setParameter('usuario_id',$this->getUser()->getId());
-//
-//         $task=$query->getResult();
-//
-        $repository=$this->getDoctrine()->getRepository(Ticket::class);
-        $query=$repository->createQueryBuilder()
-            ->
-        $query=$em->createQueryBuilder()
-            ->select('t')
-            ->from('AppBundle:Ticket', 't')
-            ->join('t.usuarioAsignado', 'u')
-            ->where('t.usuario = :usuarioId')
-            ->setParameter('usuarioId', $this->getUser());
-          //  ->orderBy('t.fechaCreado', 'DESC');
 
-        $task = $query->getQuery()->getResult();
+         $task=$this->getDoctrine()->getRepository(Ticket::class)->TicketUsuarios($this->getUser());
 
         return $this->render('@App/Task/lista.tareas.html.twig', array(
             'tasks'=>$task
@@ -63,15 +45,8 @@ class TaskController extends Controller
      */
     public function nuevoTask(Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
-        $query=$em->createQuery('
-            SELECT u FROM AppBundle:Usuario u
-            WHERE u.tipoUsuario=:tipoUsuario
-            ORDER BY u.id asc
-        ')->setParameter('tipoUsuario', 'TECNICO');
 
-        $usuarios=$query->getResult();
-
+        $usuarios=$this->getDoctrine()->getRepository(Usuario::class)->allUserTecnico();
         $form=$this->createForm(TicketType::class);
 
         return $this->render('@App/Task/nuevo.html.twig',array(

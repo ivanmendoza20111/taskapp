@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ticket
  *
- * @ORM\Table(name="ticket")
+ * @ORM\Table(name="ticket", indexes={@ORM\Index(name="fk_ticket_usuario", columns={"usuario_id"}), @ORM\Index(name="fk_ticket_usuario_asignado", columns={"usuario_asignado_id"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TicketRepository")
  */
 class Ticket
@@ -43,14 +43,22 @@ class Ticket
     private $fechaCompletado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="tickets")
-     * @ORM\JoinColumn(nullable=false)
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="tickets")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * })
      */
     private $usuario;
 
     /**
-     * insversedBy variable nombrada en Entidad Usuario
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="ticketsAsignado")
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="ticketsAsignado")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_asignado_id", referencedColumnName="id")
+     * })
      */
     private $usuarioAsignado;
 
@@ -144,23 +152,21 @@ class Ticket
     }
 
     /**
-     * Set usuarioId
+     * Set usuario
      *
-     * @param integer $usuario
+     * @param \AppBundle\Entity\Usuario $usuario
      *
      * @return Ticket
      */
-    public function setUsuario($usuario)
+    public function setUsuario(\AppBundle\Entity\Usuario $usuario = null)
     {
         $this->usuario = $usuario;
-
         return $this;
     }
-
     /**
-     * Get usuarioId
+     * Get usuario
      *
-     * @return int
+     * @return \AppBundle\Entity\Usuario
      */
     public function getUsuario()
     {
@@ -168,19 +174,25 @@ class Ticket
     }
 
     /**
-     * @return mixed
+     * Set usuarioAsignado
+     *
+     * @param \AppBundle\Entity\Usuario $usuarioAsignado
+     *
+     * @return Ticket
+     */
+    public function setUsuarioAsignado(\AppBundle\Entity\Usuario $usuarioAsignado = null)
+    {
+        $this->usuarioAsignado = $usuarioAsignado;
+        return $this;
+    }
+    /**
+     * Get usuarioAsignado
+     *
+     * @return \AppBundle\Entity\Usuario
      */
     public function getUsuarioAsignado()
     {
         return $this->usuarioAsignado;
-    }
-
-    /**
-     * @param mixed $usuarioAsignado
-     */
-    public function setUsuarioAsignado($usuarioAsignado)
-    {
-        $this->usuarioAsignado = $usuarioAsignado;
     }
 
 

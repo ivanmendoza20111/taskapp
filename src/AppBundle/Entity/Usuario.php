@@ -6,12 +6,20 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Usuario
  *
  * @ORM\Table(name="usuario")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
+ *
+ * @UniqueEntity(
+ * fields={"username"},
+ * errorPath="username",
+ * message="Username already exists!!"
+ * )
  */
 class Usuario implements UserInterface
 {
@@ -57,13 +65,13 @@ class Usuario implements UserInterface
      * $tickets
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="usuario")
      */
-    private $tickets;
+    protected $tickets;
 
     /**
      * $ticketsAsignado
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="usuarioAsignado")
      */
-    private $ticketsAsignado;
+    protected $ticketsAsignado;
 
     public function __construct()
     {
