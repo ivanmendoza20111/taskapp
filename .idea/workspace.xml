@@ -70,14 +70,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="NotaController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Nota/NotaController.php">
+      <file leaf-file-name="lista.tareas.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+            <state relative-caret-position="411">
+              <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="53" column="11" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
               <folding>
                 <element signature="e#129#155#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TicketRepository.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TicketRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -133,13 +160,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Usuario/login.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Usuario/registro.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/nuevo.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/nuevo.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/ver.html.twig.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/UsuarioRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Repository/TicketRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Usuario.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Nota.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Ticket.php" />
@@ -147,11 +171,14 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Usuario/UsuarioController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/TicketType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/NotaRepository.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/ver.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Nota/NotaController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Repository/TicketRepository.php" />
       </list>
     </option>
   </component>
@@ -235,6 +262,27 @@
             <path>
               <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="taskapp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="default" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -249,14 +297,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="Nota" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
@@ -271,47 +311,31 @@
               <item name="taskapp" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-              <item name="Usuario" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
-              <item name="Form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="taskapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="taskapp" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Task" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -328,16 +352,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="Z:\taskapp\src\AppBundle\Services" />
+      <recent name="Z:\taskapp\web\assets" />
+      <recent name="Z:\taskapp\web\css" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="Z:\taskapp\web\assets\css" />
       <recent name="Z:\taskapp\web\js" />
       <recent name="Z:\taskapp\web\css" />
       <recent name="Z:\taskapp\web" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="Z:\taskapp\src\AppBundle\Services" />
-      <recent name="Z:\taskapp\web\assets" />
-      <recent name="Z:\taskapp\web\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -374,16 +398,15 @@
       <workItem from="1531045035195" duration="13883000" />
       <workItem from="1531156077071" duration="11214000" />
       <workItem from="1531262581532" duration="2141000" />
-      <workItem from="1531652839112" duration="9026000" />
+      <workItem from="1531652839112" duration="10164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103405000" />
+    <option name="totallyTimeSpent" value="104543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20131771" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -540,13 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="36" column="58" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/UsuarioType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -586,20 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="57" lean-forward="true" selection-start-column="57" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TicketRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="48" lean-forward="true" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -667,16 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="e#129#155#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Task/nuevo.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -734,11 +726,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Nota/NotaController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="377">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#129#155#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Task/lista.tareas.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Task/TaskController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="53" column="11" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+          <folding>
+            <element signature="e#129#155#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TicketRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
         </state>
       </provider>
     </entry>

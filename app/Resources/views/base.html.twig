@@ -38,8 +38,8 @@
                         <li><a href="{{ path('lista_task') }}">Mis Asignaciones</a></li>
                     {% else %}
                         <li><a href="{{ path('lista_task') }}">Tickets</a></li>
-                        <li><a href="#">Pendientes</a></li>
-                        <li><a href="#">En Proceso</a></li>
+                        <li><a href="{{ path('lista_task_pendiente') }}">Pendientes</a></li>
+                        <li><a href="{{ path('lista_task_proceso') }}">En Proceso</a></li>
                     {% endif %}
 
                     <li><a href="{{ path('logout') }}">Cerrar Sesión</a></li>

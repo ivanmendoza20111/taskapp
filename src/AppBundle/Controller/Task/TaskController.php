@@ -33,9 +33,33 @@ class TaskController extends Controller
      */
     public function indexTask(Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
 
-         $task=$this->getDoctrine()->getRepository(Ticket::class)->TicketUsuarios($this->getUser());
+
+        $task=$this->getDoctrine()->getRepository(Ticket::class)->TicketUsuarios($this->getUser());
+
+        return $this->render('@App/Task/lista.tareas.html.twig', array(
+            'tasks'=>$task
+        ));
+    }
+
+    /**
+     * @Route("/task/pendientes", name="lista_task_pendiente", options={"expose"=true} )
+     */
+    public function pendientesTask(Request $request)
+    {
+        $task=$this->getDoctrine()->getRepository(Ticket::class)->TicketUsuarios($this->getUser(),'Pendiente');
+
+        return $this->render('@App/Task/lista.tareas.html.twig', array(
+            'tasks'=>$task
+        ));
+    }
+
+    /**
+     * @Route("/task/proceso", name="lista_task_proceso", options={"expose"=true} )
+     */
+    public function procesoTask(Request $request)
+    {
+        $task=$this->getDoctrine()->getRepository(Ticket::class)->TicketUsuarios($this->getUser(),'En_proceso');
 
         return $this->render('@App/Task/lista.tareas.html.twig', array(
             'tasks'=>$task
