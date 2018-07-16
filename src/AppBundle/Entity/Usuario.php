@@ -73,10 +73,17 @@ class Usuario implements UserInterface
      */
     protected $ticketsAsignado;
 
+    /**
+     * $notas
+     * @ORM\OneToMany(targetEntity="Nota", mappedBy="usuario")
+     */
+    protected $notas;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
         $this->ticketsAsignado = new ArrayCollection();
+        $this->notas = new ArrayCollection();
     }
 
     /**
@@ -270,5 +277,39 @@ class Usuario implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTicketsAsignado()
+    {
+        return $this->ticketsAsignado;
+    }
+
+    /**
+     * @param mixed $ticketsAsignado
+     */
+    public function setTicketsAsignado($ticketsAsignado)
+    {
+        $this->ticketsAsignado = $ticketsAsignado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNotas()
+    {
+        return $this->notas;
+    }
+
+    /**
+     * @param mixed $notas
+     */
+    public function setNotas($notas)
+    {
+        $this->notas = $notas;
+    }
+
+
 }
 

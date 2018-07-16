@@ -8,8 +8,10 @@
 
 namespace AppBundle\Controller\Task;
 
+use AppBundle\Entity\Nota;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\Usuario;
+use AppBundle\Form\NotaType;
 use AppBundle\Form\TicketType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -62,9 +64,14 @@ class TaskController extends Controller
      * @return Response
      */
     public function verTask(Ticket $ticket){
+
+        $formNotas=$this->createForm(NotaType::class);
+        $notas=$this->getDoctrine()->getRepository(Nota::class)->allNotasTicket($ticket);
+
         return $this->render('@App/Task/ver.html.twig',array(
             'ticket'=>$ticket,
-            'notas'=>0
+            'notas'=>$notas,
+            'formNotas'=>$formNotas->createView()
         ));
     }
 

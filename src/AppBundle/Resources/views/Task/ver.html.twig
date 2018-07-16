@@ -36,13 +36,13 @@
                     </thead>
                     <tbody>
                         {% if notas|length > 0 %}
-                            {#
-                            <tr>
-                                <td>{{ notas.usuario }}</td>
-                                <td>{{ notas.fecha }}</td>
-                                <td>{{ notas.comentario }}</td>
-                            </tr>
-                            #}
+                            {% for nota in notas %}
+                                <tr>
+                                    <td>{{ nota.usuario.nombre }}</td>
+                                    <td>{{ nota.fecha|date('m/d/Y H:m:s') }}</td>
+                                    <td>{{ nota.comentario }}</td>
+                                </tr>
+                            {% endfor %}
                         {% else %}
                             <tr><td colspan="3"><b>No Hay Registros!</b></td></tr>
                         {% endif %}
@@ -63,6 +63,7 @@
                     <h4 class="modal-title"><b>Notas</b></h4>
                 </div>
                 <div class="modal-body">
+                    <input hidden value="{{ ticket.id }}" id="idTicket">
                     <div class="form-group">
                         <label>Nota:</label>
                         <textarea class="form-control" id="txtNota" rows="5" autofocus></textarea>
@@ -76,5 +77,36 @@
 
         </div>
     </div>
+{% endblock %}
 
+{% block javascript %}
+{{ parent() }}
+
+<script>
+    $(document).ready(function(e){
+        $('#btnGuardar').click(function(e){
+            if($('#txtNota').val()==''){
+                alert('Debe Ingresar una Nota para continuar.');
+            }else{
+                var obj={
+                    comentario:$('#txtNota').val()
+                }
+
+                $.ajax({
+                    url:Routing.generate('guardar_noras',{ id:$('#idTicket').val() }),
+                    type:'POST',
+                    data:JSON.stringify(obj),
+                    success: function(response){
+                        if(response==1){
+                            window.location.href=window.location;
+                        }else{
+                            alert('No se pudo Guardar');
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+</script>
 {% endblock %}

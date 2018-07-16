@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -68,6 +69,17 @@ class Ticket
      * @ORM\Column(name="estado", type="string", length=255)
      */
     private $estado;
+
+    /**
+     * $notas
+     * @ORM\OneToMany(targetEntity="Nota", mappedBy="ticket")
+     */
+    private $notas;
+
+    public function __construct()
+    {
+        $this->notas = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -195,7 +207,6 @@ class Ticket
         return $this->usuarioAsignado;
     }
 
-
     /**
      * Set estado
      *
@@ -219,5 +230,22 @@ class Ticket
     {
         return $this->estado;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getNotas()
+    {
+        return $this->notas;
+    }
+
+    /**
+     * @param mixed $notas
+     */
+    public function setNotas($notas)
+    {
+        $this->notas = $notas;
+    }
+
 }
 

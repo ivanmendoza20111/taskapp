@@ -118,14 +118,6 @@ class UsuarioController extends Controller
 
     //Restful API
 
-    /**
-    * @Route("/rest/usuario/",options={"expose"=true}, name="buscar_usuarios")
-    * @Method("GET")
-    */
-    public function buscarUsuarios(Request $request)
-    {
-        return null;
-    }
 
     /**
      * @Route("/rest/usuario/{id}",options={"expose"=true}, name="buscar_usuario")
@@ -169,8 +161,6 @@ class UsuarioController extends Controller
 
         return new JsonResponse(null,400);
     }
-
-
 
     /**
      * @Route("/rest/usuario/{id}",options={"expose"=true}, name="actualizar_usuario")
