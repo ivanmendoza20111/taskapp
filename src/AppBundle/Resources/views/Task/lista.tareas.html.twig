@@ -33,7 +33,7 @@
         {% if tasks|length > 0 %}
             {% for task in tasks %}
                 <tr>
-                    <td>{{ task.id }}</td>
+                    <td id="id">{{ task.id }}</td>
                     <td>{{ task.fecha|date('m/d/Y H:m:s ') }}</td>
                     {% if app.user.tipoUsuario == 'NORMAL' %}
                         <td>{{ task.usuarioAsignado.nombre }}</td>
@@ -48,8 +48,11 @@
                             <a class="btn btn-success btn-xs" href="{{ path('ver_task',{id: task.id }) }}"><span class="glyphicon glyphicon-eye-open"></span> <b>Ver</b></a>
                             {% if task.estado=='Pendiente' %}
                                 <button type="button" class="btn btn-primary btn-xs" id="btnIniciar"><span class="glyphicon glyphicon-hand-up"></span> <b>Iniciar</b></button>
-                            {% else %}
-                                <button type="button" class="btn btn-warning btn-xs" id="btnTerminar"><span class="glyphicon glyphicon-ok"></span> <b>Terminar</b></button>
+                                <button type="button" class="btn btn-warning btn-xs" id="btnTerminar" hidden="true" ><span class="glyphicon glyphicon-ok"></span> <b>Terminar</b></button>
+                            {% else%}
+                                {% if task.estado=='En_Proceso' %}
+                                    <button type="button" class="btn btn-warning btn-xs" id="btnTerminar"><span class="glyphicon glyphicon-ok"></span> <b>Terminar</b></button>
+                                {% endif %}
                             {% endif %}
                         </td>
                     {% endif %}
@@ -65,4 +68,44 @@
     </table>
 
 </div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+<script>
+    $(document).ready(function(e){
+        $(document).on('click','#btnIniciar',function(e){
+            var r=$(e.target).closest('tr');
+            var id=r.find('#id').text();
+
+            $.ajax({
+                url:Routing.generate('actualizar_task', {id:id}),
+                data:JSON.stringify({estado:'En_Proceso'}),
+                type:'PUT',
+                success:function(e) {
+                    r.find('#btnIniciar').hide();
+                    r.find('#btnTerminar').show();
+                    r.find('#estado').text('En_Proceso');
+                }
+            });
+        });
+
+        $(document).on('click','#btnTerminar',function(e){
+            var r=$(e.target).closest('tr');
+
+            var id=r.find('#id').text();
+
+            $.ajax({
+                url:Routing.generate('actualizar_task', {id:id}),
+                data:JSON.stringify({estado:'Terminado'}),
+                type:'PUT',
+                success:function(e) {
+                    r.find('#btnTerminar').hide();
+                    r.find('#estado').text('Terminado');
+                }
+            });
+        });
+    });
+</script>
+
 {% endblock %}

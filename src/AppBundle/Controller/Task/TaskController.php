@@ -33,8 +33,6 @@ class TaskController extends Controller
      */
     public function indexTask(Request $request)
     {
-
-
         $task=$this->getDoctrine()->getRepository(Ticket::class)->TicketUsuarios($this->getUser());
 
         return $this->render('@App/Task/lista.tareas.html.twig', array(
@@ -103,8 +101,9 @@ class TaskController extends Controller
     /**
      * @Route("/rest/task", options={"expose"=true}, name="guardar_task")
      * @Method("POST")
+     * return Response
      */
-    public function guardarUsuario(Request $request)
+    public function guardarTicket(Request $request)
     {
         $data = $request->getContent();
         $data = (json_decode($data, true));
@@ -134,6 +133,8 @@ class TaskController extends Controller
 
         //$helpers = $this->get(Helpers::class);
 
+        return new Response('1');
+        /*
         //Normalize
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizer = new ObjectNormalizer();
@@ -148,5 +149,26 @@ class TaskController extends Controller
 
         $json =  $serializer->serialize($ticket,'json');
         return new JsonResponse($json);
+        */
+    }
+
+    /**
+     * @Route("/rest/task/actualizar_estado/{id}", options={"expose"=true}, name="actualizar_task")
+     * @Method("PUT")
+     * @param Request $request
+     * @param Ticket $ticket
+     * @return Response
+     */
+    public function actualizarEstado(Request $request,Ticket $ticket)
+    {
+        $data=$request->getContent();
+        $data=(json_decode($data,true));
+
+        $ticket->setEstado($data['estado']);
+
+        $em=$this->getDoctrine()->getManager();
+        $em->flush();
+
+        return new Response('1');
     }
 }
